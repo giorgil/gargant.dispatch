@@ -2,8 +2,9 @@ class NotMetched(Exception):
     pass
 
 
-def method_matching(method):
-    def _matching(environ):
+def method_matching(method, picker=lambda condition: condition):
+    def _matching(condition):
+        environ = picker(condition)
         environ_method = environ.get('REQUEST_METHOD', 'GET')
         return environ_method.lower() == method
     return _matching
@@ -14,8 +15,9 @@ def brace_match(s):
         return s.strip('{}')
 
 
-def path_matching(matching_list):
-    def _matching(environ):
+def path_matching(matching_list, picker=lambda condition: condition):
+    def _matching(condition):
+        environ = picker(condition)
         url_kwargs = {'matching_list': matching_list}
         path_info = environ.get('PATH_INFO', '')
         path_list = path_info.split('/')[1:]
