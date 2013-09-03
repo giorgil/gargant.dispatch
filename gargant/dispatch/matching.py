@@ -1,7 +1,3 @@
-class NotMetched(Exception):
-    pass
-
-
 def method_matching(method, picker=lambda condition: condition):
     def _matching(condition):
         environ = picker(condition)
