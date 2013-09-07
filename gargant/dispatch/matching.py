@@ -18,7 +18,6 @@ def path_matching(matching_list, picker=lambda condition: condition):
         if not path_list:
             path_info = environ.get('PATH_INFO', '')
             path_list = path_info.split('/')
-        print path_list
         if path_list < matching_list:
             return None
 
