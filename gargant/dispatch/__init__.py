@@ -33,7 +33,7 @@ class NotMatched(Exception):
 
 
 class Node(object):
-    def __init__(self, matchings, case=None, name='', children=[]):
+    def __init__(self, matchings, case=None, name='', children=[], adapter_factory=lambda x: lambda x: x):
         self.matchings = matchings
         self.case = case
         self.name = name
@@ -41,10 +41,13 @@ class Node(object):
         self.parent = None
         for child in self.children:
             child.parent = self
+        self.adapter_factory = adapter_factory
 
     def __call__(self, condition):
-        self.matched = map(lambda x: x(condition), self.matchings)
-        if all(self.matched):
+        matched = map(lambda x: x(condition), self.matchings)
+        if all(matched):
+            self.matched = matched
+            self.adapter = self.adapter_factory(matched)
             if self.children:
                 for node in self.children:
                     try:
