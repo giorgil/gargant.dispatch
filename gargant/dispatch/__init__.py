@@ -53,3 +53,16 @@ class Node(object):
                         continue
             return self
         raise NotMatched
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        if not hasattr(self, '_processing_node'):
+            self._processing_node = self
+        else:
+            self._processing_node = self._processing_node.parent
+        if self._processing_node:
+            return self._processing_node
+        else:
+            raise StopIteration
