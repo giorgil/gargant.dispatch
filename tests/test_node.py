@@ -46,6 +46,16 @@ def test_matched(target, true_matching):
     assert actual.adapter(True) is True
 
 
+def test_matched_parent(target, true_matching, false_matching):
+    child = target((false_matching,))
+    parent = target(
+        (true_matching,),
+        children=(
+            child,
+        ))
+    assert parent({}) == parent
+
+
 def test_matched_child(target, true_matching):
     child = target((true_matching,))
     parent = target(
@@ -58,6 +68,11 @@ def test_matched_child(target, true_matching):
 
 
 def test_iter(target):
+    node = target(tuple())
+    assert iter(node) == node
+
+
+def test_next(target):
     granchild = target(tuple())
     child = target(tuple(),
                    children=(
