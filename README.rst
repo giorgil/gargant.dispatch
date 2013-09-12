@@ -2,6 +2,9 @@
 gargant.dispatch
 ================
 
+.. image:: https://travis-ci.org/hirokiky/gargant.dispatch.png
+   :target: https://travis-ci.org/hirokiky/gargant.dispatch
+
 Flexible dispatcher for WSGI application.
 
 Basic usage
