@@ -24,8 +24,8 @@ class TestMethodMatching(object):
 
 
 def get_path_list(environ):
-    from gargant.dispatch.matching import PATH_MATCHING_LIST_NAME
-    return environ.get(PATH_MATCHING_LIST_NAME)
+    from gargant.dispatch.matching import ENVIRON_PATH_MATCHING_LIST_NAME
+    return environ.get(ENVIRON_PATH_MATCHING_LIST_NAME)
 
 
 class TestPathMatching(object):
@@ -49,8 +49,8 @@ class TestPathMatching(object):
         assert not target(['', 'instruments'])(environ)
 
     def test_with_path_list(self, target):
-        from gargant.dispatch.matching import PATH_MATCHING_LIST_NAME
-        environ = get_dummy_environ({PATH_MATCHING_LIST_NAME: ['members', 'ritsu']})
+        from gargant.dispatch.matching import ENVIRON_PATH_MATCHING_LIST_NAME
+        environ = get_dummy_environ({ENVIRON_PATH_MATCHING_LIST_NAME: ['members', 'ritsu']})
         assert target(['members', 'ritsu'])(environ)
 
     def test_path_list_too_short(self, target):

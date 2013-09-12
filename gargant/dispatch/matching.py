@@ -6,7 +6,7 @@ def method_matching(method, picker=lambda condition: condition):
     return _matching
 
 
-PATH_MATCHING_LIST_NAME = 'gargant.dispatch.path_matching_list'
+ENVIRON_PATH_MATCHING_LIST_NAME = 'gargant.dispatch.path_matching_list'
 
 
 def path_matching(matching_list, picker=lambda condition: condition):
@@ -14,7 +14,7 @@ def path_matching(matching_list, picker=lambda condition: condition):
         environ = picker(condition)
 
         url_kwargs = {'matching_list': matching_list}
-        path_list = environ.get(PATH_MATCHING_LIST_NAME)
+        path_list = environ.get(ENVIRON_PATH_MATCHING_LIST_NAME)
         if not path_list:
             path_info = environ.get('PATH_INFO', '')
             path_list = path_info.split('/')
@@ -29,7 +29,7 @@ def path_matching(matching_list, picker=lambda condition: condition):
                 if path != matching:
                     return None
 
-        environ[PATH_MATCHING_LIST_NAME] = path_list[len(matching_list):]
+        environ[ENVIRON_PATH_MATCHING_LIST_NAME] = path_list[len(matching_list):]
 
         return url_kwargs
     return _matching
