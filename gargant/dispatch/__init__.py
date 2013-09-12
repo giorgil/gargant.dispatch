@@ -44,7 +44,7 @@ class Node(object):
         self.adapter_factory = adapter_factory
 
     def __call__(self, condition):
-        matched = map(lambda x: x(condition), self.matchings)
+        matched = list(map(lambda x: x(condition), self.matchings))
         if all(matched):
             self.matched = matched
             self.adapter = self.adapter_factory(matched)
@@ -69,6 +69,8 @@ class Node(object):
             return self._processing_node
         else:
             raise StopIteration
+
+    __next__ = next
 
 
 ENVIRON_MATCHED_NODE_NAME = 'gargant.dispatch.matched_node'

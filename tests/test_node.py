@@ -82,8 +82,8 @@ def test_next(target):
                     children=(
                         child,
                     ))
-    assert granchild == granchild.next()
-    assert child == granchild.next()
-    assert parent == granchild.next()
+    assert granchild == next(granchild)
+    assert child == next(granchild)
+    assert parent == next(granchild)
     with pytest.raises(StopIteration):
         granchild.next()
