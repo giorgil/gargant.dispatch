@@ -6,7 +6,7 @@ README = open(os.path.join(here, 'README.rst')).read()
 
 setup(
     name='gargant.dispatch',
-    version='0.0',
+    version='0.1',
     packages=find_packages(exclude=['tests']),
     namespace_packages=['gargant'],
     url='https://github.com/hirokiky/gargant.dispatch',
