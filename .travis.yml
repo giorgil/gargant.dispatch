@@ -4,6 +4,6 @@ python:
   - 3.3
 install:
   - pip install pytest --use-mirrors
-  - python setup.py -q install
+  - pip install .
 script:
   - py.test
