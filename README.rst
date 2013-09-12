@@ -86,7 +86,7 @@ node.matched as list of these.
 URL args
 --------
 
-And using this behavior, path_matching can take args from URL.
+And using this behavior, path_matching can take args from URL::
 
     >>> tree = Node((path_matching(['']),),
     ...             case='doll_list',
