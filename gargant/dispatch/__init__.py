@@ -77,8 +77,8 @@ ENVIRON_MATCHED_NODE_NAME = 'gargant.dispatch.matched_node'
 
 
 def make_wsgi_app(tree):
-    def wsgi_app(start_response, environ):
+    def wsgi_app(environ, start_response):
         node = tree(environ)
         environ[ENVIRON_MATCHED_NODE_NAME] = node
-        return node.case(start_response, environ)
+        return node.case(environ, start_response)
     return wsgi_app

@@ -17,8 +17,8 @@ def environ():
 def tree_factory(portal):
     from gargant.dispatch import Node
 
-    def wsgi_app(start_response, environ):
-        return start_response, environ
+    def wsgi_app(environ, start_response):
+        return environ, start_response
 
     def matching(environ):
         portal['environ'] = environ
@@ -33,6 +33,6 @@ def test_it(target, environ):
     portal = {}
     tree = tree_factory(portal)
     actual = target(tree)
-    assert actual('start_response', environ) == ('start_response', environ)
+    assert actual(environ, 'start_response') == (environ, 'start_response')
     assert portal['environ'] == environ
     assert environ[ENVIRON_MATCHED_NODE_NAME] == tree
