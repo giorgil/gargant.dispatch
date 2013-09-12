@@ -10,5 +10,14 @@ setup(
     author='hirokiky',
     author_email='hirokiky@gmail.com',
     description='Dispatcher for WSGI Applications',
-    tests_require=['pytest==2.3.5']
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "License :: OSI Approved :: MIT License",
+        "Environment :: Web Environment",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.3",
+        "Topic :: Internet :: WWW/HTTP",
+        "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+    ],
+    tests_require=['pytest'],
 )
