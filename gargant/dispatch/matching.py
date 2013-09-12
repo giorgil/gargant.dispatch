@@ -1,6 +1,5 @@
-def method_matching(method, picker=lambda condition: condition):
-    def _matching(condition):
-        environ = picker(condition)
+def method_matching(method):
+    def _matching(environ):
         environ_method = environ.get('REQUEST_METHOD', 'GET')
         return environ_method.lower() == method
     return _matching
@@ -9,10 +8,8 @@ def method_matching(method, picker=lambda condition: condition):
 ENVIRON_PATH_MATCHING_LIST_NAME = 'gargant.dispatch.path_matching_list'
 
 
-def path_matching(matching_list, picker=lambda condition: condition):
-    def _matching(condition):
-        environ = picker(condition)
-
+def path_matching(matching_list):
+    def _matching(environ):
         url_kwargs = {'matching_list': matching_list}
         path_list = environ.get(ENVIRON_PATH_MATCHING_LIST_NAME)
         if not path_list:
